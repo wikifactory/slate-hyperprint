@@ -16,7 +16,7 @@
     "stringify-object": "^3.2.2"
   },
   "peerDependencies": {
-    "slate": "^0.40.2"
+    "slate": "^0.44.9"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -40,8 +40,8 @@
     "mocha": "^3.0.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "slate": "^0.40.2",
-    "slate-hyperscript": "^0.10.2"
+    "slate": "^0.44.9",
+    "slate-hyperscript": "^0.11.24"
   },
   "scripts": {
     "build": "babel ./src --out-dir ./dist",
