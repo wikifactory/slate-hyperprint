@@ -1,5 +1,5 @@
 // @flow
-import type { Value, Decoration, Mark } from 'slate';
+import type { Editor, Decoration, Mark } from 'slate';
 import type { SlateModel } from './types';
 
 /**
@@ -27,20 +27,18 @@ export const getModelType = (model: SlateModel): string =>
  *
  * The easiest way to print decoration tags is by applying decoration marks to slate document.
  * To identify marks which are decorations in real while printing tags, mark type is wrapped intentionally.
- * @param {Value} value
- * @returns {Value}
+ * @param {Editor} editor
+ * @returns {Editor}
  */
-export const applyDecorationMarks = (value: Value): Value => {
-    const change = value.change();
-    value.decorations.forEach((decoration: Decoration) => {
-        change.addMarkAtRange(
-            decoration,
-            {
+export const applyDecorationMarks = (editor: Editor): Editor => {
+    const { value } = editor;
+    editor.withoutNormalizing(() => {
+        value.decorations.forEach((decoration: Decoration) => {
+            editor.addMarkAtRange(decoration, {
                 ...decoration.mark.toJSON(),
                 type: `__@${decoration.mark.type}@__`
-            },
-            { normalize: false }
-        );
+            });
+        });
     });
-    return change.value;
+    return editor;
 };

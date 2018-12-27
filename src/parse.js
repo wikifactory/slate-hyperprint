@@ -1,5 +1,6 @@
 // @flow
 import type { Block, Inline } from 'slate';
+import { Editor } from 'slate';
 import type { SlateModel, Options, HyperScriptOptions } from './types';
 import Tag from './tag';
 import { printString } from './utils';
@@ -170,6 +171,10 @@ function getAttributes(
 ): Object {
     let result = {};
 
+    if (model.document) {
+        return result;
+    }
+
     // type
     if (!asShorthand && model.type) {
         result.type = model.type;
@@ -206,12 +211,14 @@ function parse(model: SlateModel, options: Options): Tag[] {
     }
 
     if (object === 'value') {
+        const editor = new Editor({ value: model });
         if (model.decorations.size > 0) {
-            model = applyDecorationMarks(model);
+            applyDecorationMarks(editor);
         }
         if (model.selection.isFocused) {
-            model = insertFocusedSelectionTagMarkers(model, options);
+            insertFocusedSelectionTagMarkers(editor, options);
         }
+        model = editor.value;
     }
 
     return parser(model, options);

@@ -1,5 +1,5 @@
 // @flow
-import type { Value } from 'slate';
+import type { Editor, Value } from 'slate';
 import type { Options } from './types';
 
 /**
@@ -40,14 +40,15 @@ const selectionOpenMarker = (value: Value, open: string = '__@'): string => {
  * The easiest way to print focused selection tags (anchor, focus, cursor) is to add them explicitly into the document as texts.
  * This function inserts special text strings that will be replaced by focused selection tags while printing the document.
  * It also saves selection marker open tag into the options for replacement while printing leaf nodes.
- * @param {Value} value
+ * @param {Editor} editor
  * @param {Options} options
- * @returns {Value}
+ * @returns {Editor}
  */
 export const insertFocusedSelectionTagMarkers = (
-    value: Value,
+    editor: Editor,
     options: Options
 ): Value => {
+    const { value } = editor;
     const { selection } = value;
     const {
         isExpanded,
@@ -71,9 +72,7 @@ export const insertFocusedSelectionTagMarkers = (
         tags = isForward ? ['focus', 'anchor'] : ['anchor', 'focus'];
     }
 
-    const change = value.change();
-
-    change.call(ch =>
+    editor.command(ch =>
         tags.forEach(tag => {
             const { path, offset } = selection[tag] || anchor;
             ch.insertTextByPath(path, offset, `${open}${tag}${close}`);
@@ -83,7 +82,7 @@ export const insertFocusedSelectionTagMarkers = (
     // selectionMarker in options saved only for internal usage
     (options: any).selectionMarker = open;
 
-    return change.value;
+    return editor;
 };
 
 /**
