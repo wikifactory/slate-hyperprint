@@ -1,10 +1,11 @@
-# slate-hyperprint
+# @wikifactory/slate-hyperprint
 
-[![NPM version](https://badge.fury.io/js/slate-hyperprint.svg)](http://badge.fury.io/js/slate-hyperprint)
+[![NPM version](https://badge.fury.io/js/%40wikifactory%2Fslate-hyperprint.svg)](http://badge.fury.io/js/%40wikifactory%2Fslate-hyperprint)
+[![Linux Build Status](https://travis-ci.org/wikifactory/slate-hyperprint.png?branch=master)](https://travis-ci.org/wikifactory/slate-hyperprint)
 
 A library to convert Slate models to their slate-hyperscript representation.
 
-You can use `slate-hyperprint` as a library to:
+You can use `@wikifactory/slate-hyperprint` as a library to:
 
 - Run a script to easily convert Slate tests written in Yaml/JSON to hyperscript.
 - Improve the output of unit tests by comparing hyperscript strings instead of JSON values.
@@ -15,14 +16,14 @@ See the [online demo](https://soreine.github.io/slate-hyperprint), that converts
 # Setup
 
 ```
-yarn add slate-hyperprint [--dev]
+yarn add @wikifactory/slate-hyperprint [--dev]
 ```
 
 # Usage
 
 ```js
 import Slate from 'slate';
-import hyperprint from 'slate-hyperprint';
+import hyperprint from '@wikifactory/slate-hyperprint';
 
 console.log(
     hyperprint(
@@ -55,7 +56,7 @@ hyperprint.log(...)
 
 # Options
 
-`slate-hyperprint` accepts an option object:
+`@wikifactory/slate-hyperprint` accepts an option object:
 
 ```js
 hyperprint(value, options);
@@ -85,7 +86,7 @@ yarn run build
 # CLI
 
 slate-hyperprint also export a command line interface tool that converts yaml files to jsx.
-When installed globally (`npm install slate-hyperprint --global`) it can be used like so:
+When installed globally (`npm install @wikifactory/slate-hyperprint --global`) it can be used like so:
 
 ```
 $ slate-hyperprint document.yaml

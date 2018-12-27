@@ -2,7 +2,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-# Unreleased
+# 3.0.0 - 27/12/2018
+
+- Upgrade to slate^0.44.9
 
 # 2.2.6 - 17/09/2018
 
