@@ -212,11 +212,16 @@ function parse(model: SlateModel, options: Options): Tag[] {
 
     if (object === 'value') {
         const editor = new Editor({ value: model });
+        const { anchor, focus } = editor.value.selection;
         if (model.decorations.size > 0) {
             applyDecorationMarks(editor);
+            editor.moveAnchorTo(anchor.key, anchor.offset);
+            editor.moveFocusTo(focus.key, focus.offset);
         }
         if (model.selection.isFocused) {
             insertFocusedSelectionTagMarkers(editor, options);
+            editor.moveAnchorTo(anchor.key, anchor.offset);
+            editor.moveFocusTo(focus.key, focus.offset);
         }
         model = editor.value;
     }
