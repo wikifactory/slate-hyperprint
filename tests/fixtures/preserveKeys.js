@@ -30,7 +30,7 @@ const output = `
 <value>
     <document key="a">
         <paragraph key="b">
-            <text key="6" />
+            <text key="1" />
             <link key="c" src="source">
                 <text key="g">Some link</text>
             </link>

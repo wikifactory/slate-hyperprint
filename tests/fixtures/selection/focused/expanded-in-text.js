@@ -5,29 +5,37 @@ import h from '../../../h';
 const input = (
     <value>
         <document>
-            <paragraph />
             <paragraph>
-                Hello, world!
+                <text key="anchor_key" />
+            </paragraph>
+            <paragraph>
+                <text key="focus_key">Hello, world!</text>
             </paragraph>
         </document>
         <selection focused>
-            <anchor path={[0, 0]} />
-            <focus offset={1} path={[1, 0]} />
+            <anchor key="anchor_key" />
+            <focus key="focus_key" offset={1} />
         </selection>
     </value>
 );
 
 const output = `
 <value>
-    <document>
-        <paragraph>
-            <anchor />
+    <document key="2">
+        <paragraph key="0">
+            <text key="anchor_key">
+                <anchor />
+            </text>
         </paragraph>
-        <paragraph>
-            H<focus />ello, world!
+        <paragraph key="1">
+            <text key="focus_key">
+                H<focus />ello, world!
+            </text>
         </paragraph>
     </document>
 </value>
 `;
 
-export { input, output };
+const options = { preserveKeys: true };
+
+export { input, output, options };

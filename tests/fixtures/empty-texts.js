@@ -38,6 +38,10 @@ const output = `
             <text />
         </paragraph>
     </document>
+    <selection>
+        <anchor path={[1, 0]} />
+        <focus path={[1, 0]} />
+    </selection>
 </value>
 `;
 

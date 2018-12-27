@@ -49,10 +49,6 @@ const output = `
         </paragraph>
         <image src="image.png" />
     </document>
-    <selection>
-        <anchor path={[0, 1, 0]} />
-        <focus path={[0, 1, 0]} />
-    </selection>
 </value>
 `;
 
